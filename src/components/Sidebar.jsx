@@ -40,6 +40,17 @@ let routes = [
                 height={18}
             />
         )
+    },
+    {
+        lable: "Components",
+        link: "/components",
+        icon: (active) => (
+            <ReportsIcon
+                color={active ? "#fff" : "gray"}
+                width={18}
+                height={18}
+            />
+        )
     }
 ]
 
