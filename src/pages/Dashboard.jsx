@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Button from '../components/Button'
 import AnalyticsCard from '../components/AnalyticsCard';
 
@@ -6,6 +6,12 @@ import card1Icon from '../assets/images/card1.svg'
 import card2Icon from '../assets/images/card2.svg'
 import card3Icon from '../assets/images/card3.svg'
 import RevenueGrowthChart from '../components/RevenueGrowthChart';
+import UserTable from '../components/UserTable';
+
+import user1 from '../assets/images/User.png'
+import user2 from '../assets/images/User-1.png'
+import user3 from '../assets/images/User-2.png'
+import user4 from '../assets/images/User-3.png'
 
 const CalendarIcon = () => (
   <svg
@@ -45,6 +51,42 @@ const DownloadIcon = () => (
 );
 
 function Dashboard() {
+
+   let [usersData, setUsersData] = useState([
+    {
+      userImage: user1,
+      name: "Testing User 1",
+      email: "user1@gmail.com",
+      status: "Active",
+      lastActive: "2 min ago",
+      revenue: "$1,450.00"
+    },
+    {
+      userImage: user2,
+      name: "Testing User 2",
+      email: "user2@gmail.com",
+      status: "Inactive",
+      lastActive: "1 hour ago",
+      revenue: "$2,890.00"
+    },
+    {
+      userImage: user3,
+      name: "Testing User 3",
+      email: "user3@gmail.com",
+      status: "Active",
+      lastActive: "10 min ago",
+      revenue: "$850.50"
+    },
+    {
+      userImage: user4,
+      name: "Testing User 4",
+      email: "user4@gmail.com",
+      status: "Suspended",
+      lastActive: "25 min ago",
+      revenue: "$5,200.00"
+    }
+  ])
+
   return (
     <main className='p-[30px] w-[100%] overflow-hidden'>
       <div className='flex flex-col lg:flex-row justify-between lg:items-end'>
@@ -69,11 +111,11 @@ function Dashboard() {
       </div>
 
       <div className='flex flex-wrap lg:flex-nowrap gap-[20px] w-full mt-[40px]'>
-        <div className='w-[66%] analyticsCard pb-[50px]'>
+        <div className='sm:w-[66%] w-[100%] analyticsCard pb-[50px]'>
          <RevenueGrowthChart />
         </div>
 
-        <div className='w-[33%] p-[30px] bg-[#3a388b] rounded-[15px] text-[#fff]'>
+        <div className='sm:w-[33%] w-[100%] p-[30px] bg-[#3a388b] rounded-[15px] text-[#fff]'>
           <span className="bg-[#504f98] p-[5px] px-[10px]">
             NEW INSIGHTS
           </span>
@@ -88,6 +130,14 @@ function Dashboard() {
           <button className='mt-[20px] bg-[#fff] text-[#3a388b] w-[100%] text-center px-[20px] py-[10px] rounded-[5px] flex items-center justify-center gap-x-[10px]'>
             Investigate Now
           </button>
+        </div>
+      </div>
+
+       <div className='mt-[40px]'>
+        <h3>Recent Transactions</h3>
+
+        <div className='mt-[20px] w-[100%] overflow-x-scroll '>
+          <UserTable data={usersData} />
         </div>
       </div>
     </main>
