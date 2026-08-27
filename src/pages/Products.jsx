@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Button from '../components/Button'
 import Pagination from '../components/pagination'
 
@@ -7,13 +7,33 @@ function Products() {
 
     let [products, setProducts] = useState([])
     let [isLoading, setIsLoading] = useState(true)
+    let [search, setSearch] = useState("")
 
     const [page, setPage] = useState(0);
+
+    const debounce = (callback, wait = 300) => {
+        let timeoutId;
+
+        return (...params) => {
+            clearTimeout(timeoutId);
+
+            timeoutId = setTimeout(() => {
+                callback(...params);
+            }, wait);
+        };
+    };
+
+    const debouncedSearch = useCallback(
+        debounce((value) => {
+            setSearch(value);
+        }, 500),
+        []
+    );
 
     const getProducts = async () => {
         setIsLoading(true)
         try {
-            let res = await axios.get(`https://dummyjson.com/products/?limit=09&skip=${page * 9}`)
+            let res = await axios.get(`https://dummyjson.com/products/search?limit=09&skip=${page * 9}&q=${search}`)
             setProducts(res.data)
             window.scrollTo({ top: 0, behavior: "smooth" })
             setIsLoading(false)
@@ -23,7 +43,7 @@ function Products() {
 
     useEffect(() => {
         getProducts()
-    }, [page])
+    }, [page, search])
 
     return (
         <div className="p-[50px]">
@@ -32,6 +52,11 @@ function Products() {
 
                 <div className="w-[300px] bg-gray-100 rounded-md p-[10px]">
                     <input
+                        onChange={(e) => {
+                            setIsLoading(true)
+                            setPage(0)
+                            debouncedSearch(e.target.value)
+                        }}
                         type="text"
                         placeholder="Search..."
                         className="outline-none w-full bg-transparent px-[10px]"
