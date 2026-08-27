@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Dashboard from '../pages/Dashboard'
-import Products from '../pages/Products'
+import Products from '../pages/Products.jsx'
 
 function UserRoutes() {
     return (
