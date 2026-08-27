@@ -29,6 +29,17 @@ let routes = [
                 height={18}
             />
         )
+    },
+    {
+        lable: "Users",
+        link: "/users",
+        icon: (active) => (
+            <UsersIcon
+                color={active ? "#fff" : "gray"}
+                width={18}
+                height={18}
+            />
+        )
     }
 ]
 
