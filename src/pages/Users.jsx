@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Button from "../components/Button";
+import Input from "../components/Input";
 
 
 function Stepper({ current }) {
@@ -37,7 +38,17 @@ export default function Users() {
 
       {current === 0 && (
         <>
-         Step 1: Personal Information
+            <Input
+                placeholder="Name"
+            />
+
+            <Input
+                placeholder="Email"
+            />
+
+            <Input
+                placeholder="Phone"
+            />
         </>
       )}
 
