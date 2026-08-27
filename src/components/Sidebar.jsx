@@ -18,6 +18,17 @@ let routes = [
                 height={18}
             />
         )
+    },
+    {
+        lable: "Products",
+        link: "/products",
+        icon: (active) => (
+            <AnalyticsIcon
+                color={active ? "#fff" : "gray"}
+                width={18}
+                height={18}
+            />
+        )
     }
 ]
 
