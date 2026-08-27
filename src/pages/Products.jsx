@@ -8,6 +8,7 @@ function Products() {
     let [products, setProducts] = useState([])
     let [isLoading, setIsLoading] = useState(true)
     let [search, setSearch] = useState("")
+    let [errorState, setErrorState] = useState("")
 
     const [page, setPage] = useState(0);
 
@@ -37,7 +38,10 @@ function Products() {
             setProducts(res.data)
             window.scrollTo({ top: 0, behavior: "smooth" })
             setIsLoading(false)
+            setErrorState(!res.data?.products?.length && "No products found");
         } catch (error) {
+            setIsLoading(false)
+            setErrorState(error)
         }
     }
 
@@ -119,6 +123,9 @@ function Products() {
                         </div>
                     ))
                 }
+
+                {!isLoading && errorState && <p className="text-center text-red-500 text-[18px] font-bold">{errorState}</p>}
+                
             </div>
 
              <Pagination
