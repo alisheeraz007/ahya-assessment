@@ -1,8 +1,11 @@
 import React from 'react'
+import Button from '../components/Button'
 
 function Dashboard() {
   return (
-    <div>Dashboard</div>
+    <div>
+      <Button text="abc" />
+    </div>
   )
 }
 
