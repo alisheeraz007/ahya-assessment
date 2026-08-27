@@ -1,17 +1,21 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import Button from '../components/Button'
+import Pagination from '../components/pagination'
 
 function Products() {
 
     let [products, setProducts] = useState([])
     let [isLoading, setIsLoading] = useState(true)
 
+    const [page, setPage] = useState(0);
+
     const getProducts = async () => {
         setIsLoading(true)
         try {
-            let res = await axios.get(`https://dummyjson.com/products/?limit=10`)
+            let res = await axios.get(`https://dummyjson.com/products/?limit=09&skip=${page * 9}`)
             setProducts(res.data)
+            window.scrollTo({ top: 0, behavior: "smooth" })
             setIsLoading(false)
         } catch (error) {
         }
@@ -19,7 +23,7 @@ function Products() {
 
     useEffect(() => {
         getProducts()
-    }, [])
+    }, [page])
 
     return (
         <div className="p-[50px]">
@@ -52,6 +56,7 @@ function Products() {
                             <div className="flex flex-wrap gap-[10px] mt-[20px]">
                                 {item?.tags?.map((tag, j) => (
                                     <div
+                                        key={j}
                                         className="cursor-pointer py-[3px] px-[10px] bg-gray-200 hover:bg-gray-300 transition-all text-[12px] rounded-full"
                                     >
                                         {tag}
@@ -90,6 +95,15 @@ function Products() {
                     ))
                 }
             </div>
+
+             <Pagination
+                totalItems={products?.total || 0}
+                itemsPerPage={9}
+                currentPage={page}
+                onPageChange={setPage}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+            />
 
         </div>
     )
