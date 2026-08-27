@@ -50,8 +50,8 @@ function Products() {
     }, [page, search])
 
     return (
-        <div className="p-[50px]">
-            <div className="container mx-auto flex justify-between">
+        <div className="sm:p-[50px] p-[30px]">
+            <div className="container mx-auto flex justify-between sm:flex-row flex-col items-center gap-[20px]">
                 <h1 className="text-[28px] font-bold text-center">Products</h1>
 
                 <div className="w-[300px] bg-gray-100 rounded-md p-[10px]">
@@ -70,7 +70,7 @@ function Products() {
 
             <div className="container mx-auto flex flex-wrap gap-[20px] mt-[50px]">
                 {!isLoading ? products?.products?.map((item, i) => (
-                    <div key={i} className="p-[20px] w-[calc(33.33%-15px)] shadow-lg rounded-md">
+                    <div key={i} className="p-[20px] sm:w-[calc(33.33%-15px)] shadow-lg rounded-md">
                         <div className="flex items-center justify-center ">
                             <img src={item.thumbnail} alt={item.title} className="object-cover transition-all hover:scale-110" />
                         </div>
@@ -99,7 +99,7 @@ function Products() {
                     [...Array(3)].map((item, i) => (
                         <div
                             key={i}
-                            className="p-[20px] w-[calc(33%-40px)] shadow-lg rounded-md animate-pulse"
+                            className="p-[20px] sm:w-[calc(33%-40px)] shadow-lg rounded-md animate-pulse"
                         >
                             <div className="flex items-center justify-center">
                                 <div className="w-full h-[320px] bg-gray-300 rounded-md"></div>
