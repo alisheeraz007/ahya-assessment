@@ -5,6 +5,7 @@ import AnalyticsCard from '../components/AnalyticsCard';
 import card1Icon from '../assets/images/card1.svg'
 import card2Icon from '../assets/images/card2.svg'
 import card3Icon from '../assets/images/card3.svg'
+import RevenueGrowthChart from '../components/RevenueGrowthChart';
 
 const CalendarIcon = () => (
   <svg
@@ -65,6 +66,29 @@ function Dashboard() {
         <AnalyticsCard icon={card1Icon} percent="12.5%" nagative={false} label="Total Revenue" count="$45,231.00" />
         <AnalyticsCard icon={card2Icon} percent="8.2%" nagative={false} label="Active Users" count="12,842" />
         <AnalyticsCard icon={card3Icon} percent="1.4%" nagative={true} label="Conversion Rate" count="3.4%" />
+      </div>
+
+      <div className='flex flex-wrap lg:flex-nowrap gap-[20px] w-full mt-[40px]'>
+        <div className='w-[66%] analyticsCard pb-[50px]'>
+         <RevenueGrowthChart />
+        </div>
+
+        <div className='w-[33%] p-[30px] bg-[#3a388b] rounded-[15px] text-[#fff]'>
+          <span className="bg-[#504f98] p-[5px] px-[10px]">
+            NEW INSIGHTS
+          </span>
+
+          <h2 className='text-[30px] font-[600] mt-[20px]'>
+            Machine learning detected a 14% anomaly in User Retention.
+          </h2>
+          <p className='mt-[20px]'>
+            lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc ut laoreet tincidunt, nunc nisl aliquam nunc, eget aliquam nisl nunc eget nunc.
+          </p>
+
+          <button className='mt-[20px] bg-[#fff] text-[#3a388b] w-[100%] text-center px-[20px] py-[10px] rounded-[5px] flex items-center justify-center gap-x-[10px]'>
+            Investigate Now
+          </button>
+        </div>
       </div>
     </main>
   )
