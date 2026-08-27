@@ -4,7 +4,7 @@ import Button from '../components/Button'
 function Dashboard() {
   return (
     <div>
-      <Button text="abc" />
+      Dashboard
     </div>
   )
 }
