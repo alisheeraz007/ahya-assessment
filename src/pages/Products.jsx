@@ -5,11 +5,14 @@ import Button from '../components/Button'
 function Products() {
 
     let [products, setProducts] = useState([])
+    let [isLoading, setIsLoading] = useState(true)
 
     const getProducts = async () => {
+        setIsLoading(true)
         try {
             let res = await axios.get(`https://dummyjson.com/products/?limit=10`)
             setProducts(res.data)
+            setIsLoading(false)
         } catch (error) {
         }
     }
@@ -33,7 +36,7 @@ function Products() {
             </div>
 
             <div className="container mx-auto flex flex-wrap gap-[20px] mt-[50px]">
-                {products?.products?.map((item, i) => (
+                {!isLoading ? products?.products?.map((item, i) => (
                     <div key={i} className="p-[20px] w-[calc(33.33%-15px)] shadow-lg rounded-md">
                         <div className="flex items-center justify-center ">
                             <img src={item.thumbnail} alt={item.title} className="object-cover transition-all hover:scale-110" />
@@ -57,7 +60,35 @@ function Products() {
                             </div>
                         </div>
                     </div>
-                ))}
+                ))
+                 :
+                    [...Array(3)].map((item, i) => (
+                        <div
+                            key={i}
+                            className="p-[20px] w-[calc(33%-40px)] shadow-lg rounded-md animate-pulse"
+                        >
+                            <div className="flex items-center justify-center">
+                                <div className="w-full h-[320px] bg-gray-300 rounded-md"></div>
+                            </div>
+
+                            <div className="mt-[20px]">
+                                <div className="h-[20px] bg-gray-300 rounded w-[70%] mx-auto"></div>
+                                <div className="h-[18px] bg-gray-300 rounded w-[40%] mx-auto mt-[10px]"></div>
+                                <div className="mt-[20px] flex justify-center">
+                                    <div className="h-[40px] w-[120px] bg-gray-300 rounded-md"></div>
+                                </div>
+                                <div className="flex flex-wrap gap-[10px] mt-[20px] justify-start">
+                                    {[...Array(3)].map((_, j) => (
+                                        <div
+                                            key={j}
+                                            className="h-[20px] w-[60px] bg-gray-300 rounded-full"
+                                        ></div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    ))
+                }
             </div>
 
         </div>
