@@ -54,7 +54,7 @@ const Spinner = styled.div`
 `;
 
 export default function Button({
-    text,
+    children,
     loading,
     disabled,
     className,
@@ -67,7 +67,7 @@ export default function Button({
             disabled={disabled || loading}
         >
             {loading && <Spinner />}
-            {text}
+            {children}
             {props.icon}
         </StyledButton>
     );
