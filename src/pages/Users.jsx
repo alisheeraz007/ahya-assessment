@@ -151,10 +151,10 @@ export default function Users() {
   }
 
   return (
-    <div className="mx-auto mt-10 p-[50px]">
+    <div className="mx-auto mt-10 sm:p-[50px] p-[30px]">
 
-    <div className="flex gap-10">
-      <div className={`w-[60%] ${current === 2 ? "hidden" : "visible"}`}>
+    <div className="flex flex-wrap lg:flex-nowrap gap-10">
+      <div className={`w-full lg:w-[60%] ${current === 2 ? "hidden" : "visible"}`}>
       <Stepper current={current} />
 
       {current === 0 && (
@@ -286,7 +286,7 @@ export default function Users() {
       </div>
       </div>
 
-      <div className={`w-[40%] ${current === 2 ? "mx-auto" : ""}`}>
+      <div className={`w-full lg:w-[40%] ${current === 2 ? "mx-auto" : ""}`}>
         <div className="bg-white shadow-lg rounded-[10px] p-[30px] border border-gray-100">
 
         <h3 className="text-xl font-semibold mb-6">

@@ -70,7 +70,7 @@ function Products() {
 
             <div className="container mx-auto flex flex-wrap gap-[20px] mt-[50px]">
                 {!isLoading ? products?.products?.map((item, i) => (
-                    <div key={i} className="p-[20px] sm:w-[calc(33.33%-15px)] shadow-lg rounded-md">
+                    <div key={i} className="p-[20px] lg:w-[calc(33.33%-15px)] w-full shadow-lg rounded-md">
                         <div className="flex items-center justify-center ">
                             <img src={item.thumbnail} alt={item.title} className="object-cover transition-all hover:scale-110" />
                         </div>

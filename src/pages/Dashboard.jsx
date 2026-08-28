@@ -111,11 +111,11 @@ function Dashboard() {
       </div>
 
       <div className='flex flex-wrap lg:flex-nowrap gap-[20px] w-full mt-[40px]'>
-        <div className='sm:w-[66%] w-[100%] analyticsCard pb-[50px]'>
+        <div className='lg:w-[66%] w-[100%] analyticsCard pb-[50px]'>
          <RevenueGrowthChart />
         </div>
 
-        <div className='sm:w-[33%] w-[100%] p-[30px] bg-[#3a388b] rounded-[15px] text-[#fff]'>
+        <div className='lg:w-[33%] w-[100%] p-[30px] bg-[#3a388b] rounded-[15px] text-[#fff]'>
           <span className="bg-[#504f98] p-[5px] px-[10px]">
             NEW INSIGHTS
           </span>

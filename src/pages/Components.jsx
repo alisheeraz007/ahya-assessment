@@ -189,7 +189,7 @@ function Demo() {
 
       <div className="mt-[40px]">
         <h2 className="text-[24px] mb-[20px] font-bold w-full">Buttons</h2>
-      <div style={{ display: "flex", gap: 10, marginTop: 20 }}>
+      <div style={{ display: "flex", gap: 10, marginTop: 20, flexWrap: "wrap" }}>
         <Button
           variant="primary"
           size="sm"
@@ -218,7 +218,9 @@ function Demo() {
         </Button>
       </div>
 
-      <div style={{ display: "flex", gap: 10, marginTop: 20 }}>
+      <hr style={{margin: "20px 0"}}/>
+
+      <div style={{ display: "flex", gap: 10, marginTop: 20, flexWrap: "wrap" }}>
         <Button
           variant="secondary"
           size="sm"
@@ -247,7 +249,9 @@ function Demo() {
         </Button>
       </div>
 
-      <div style={{ display: "flex", gap: 10, marginTop: 20 }}>
+      <hr style={{margin: "20px 0"}}/>
+
+      <div style={{ display: "flex", gap: 10, marginTop: 20, flexWrap: "wrap" }}>
         <Button
           variant="danger"
           size="sm"
@@ -276,7 +280,9 @@ function Demo() {
         </Button>
       </div>
 
-      <div style={{ display: "flex", gap: 10, marginTop: 20 }}>
+      <hr style={{margin: "20px 0"}}/>
+
+      <div style={{ display: "flex", gap: 10, marginTop: 20, flexWrap: "wrap" }}>
         <Button
           variant="outline"
           size="sm"
@@ -305,7 +311,9 @@ function Demo() {
         </Button>
       </div>
 
-      <div style={{ display: "flex", gap: 10, marginTop: 20 }}>
+      <hr style={{margin: "20px 0"}}/>
+
+      <div style={{ display: "flex", gap: 10, marginTop: 20, flexWrap: "wrap" }}>
         <Button
           variant="warning"
           size="sm"
