@@ -46,7 +46,7 @@ function Slider({ value, onChange }) {
 
 
 function Stepper({ current }) {
-  const steps = ["Personal", "Preferences", "Review"];
+  const steps = ["Personal", "Preferences"];
 
   return (
     <div className="flex items-center justify-between mb-8">
@@ -97,6 +97,8 @@ export default function Users() {
       if (!value) error = "Phone is required";
       else if (!/^\d{10,15}$/.test(value)) error = "Invalid phone";
     }
+
+    if (name === "file" && !value) error = "Upload your profile picture";
 
     setErrors((prev) => ({ ...prev, [name]: error }));
     return !error;
@@ -149,12 +151,26 @@ export default function Users() {
   }
 
   return (
-    <div className="max-w-[500px] mx-auto mt-10">
+    <div className="mx-auto mt-10 p-[50px]">
+
+    <div className="flex gap-10">
+      <div className={`w-[60%] ${current === 2 ? "hidden" : "visible"}`}>
       <Stepper current={current} />
 
       {current === 0 && (
         <>
+          <Input
+            label="Upload your profile picture"
+            type="file"
+            placeholder="File"
+            onChange={(e) => handleChange("file", e.target.files[0])}
+            onBlur={(e) => validateField("file", e.target.files[0])}
+            error={errors.file}
+          />
+
            <Input
+            label="Enter your name"
+            type="text"
             placeholder="Name"
             value={form.name}
             onChange={(e) => handleChange("name", e.target.value)}
@@ -163,6 +179,8 @@ export default function Users() {
           />
 
           <Input
+            label="Enter your email"
+            type="email"
             placeholder="Email"
             value={form.email}
             onChange={(e) => handleChange("email", e.target.value)}
@@ -171,12 +189,15 @@ export default function Users() {
           />
 
           <Input
+            label="Enter your phone"
+            type="number"
             placeholder="Phone"
             value={form.phone}
             onChange={(e) => handleChange("phone", e.target.value)}
             onBlur={(e) => validateField("phone", e.target.value)}
             error={errors.phone}
           />
+
         </>
       )}
 
@@ -262,13 +283,129 @@ export default function Users() {
             Next
           </Button>
         )}
-
-        {current === 2 && (
-          <Button onClick={handleSubmit} loading={isLoading}>
-            Submit
-          </Button>
-        )}
       </div>
+      </div>
+
+      <div className={`w-[40%] ${current === 2 ? "mx-auto" : ""}`}>
+        <div className="bg-white shadow-lg rounded-[10px] p-[30px] border border-gray-100">
+
+        <h3 className="text-xl font-semibold mb-6">
+          Profile Preview
+        </h3>
+
+        <div className="space-y-5">
+
+          <div>
+            <p className="text-sm text-gray-500 mb-2">
+              Profile Picture
+            </p>
+
+            {form.file ? (
+              <img
+                src={URL.createObjectURL(form.file)}
+                alt="Profile"
+                className="w-20 h-20 rounded-full object-cover border"
+              />
+            ) : (
+              <div className="w-20 h-20 rounded-full bg-gray-200 animate-pulse" />
+            )}
+          </div>
+
+          <div>
+            <p className="text-sm text-gray-500 mb-1">Name</p>
+            {form.name ? (
+              <p className="font-medium text-gray-900">
+                {form.name}
+              </p>
+            ) : (
+              <div className="h-5 w-40 bg-gray-200 rounded animate-pulse" />
+            )}
+          </div>
+
+          <div>
+            <p className="text-sm text-gray-500 mb-1">Email</p>
+            {form.email ? (
+              <p className="font-medium text-gray-900">
+                {form.email}
+              </p>
+            ) : (
+              <div className="h-5 w-52 bg-gray-200 rounded animate-pulse" />
+            )}
+          </div>
+
+          <div>
+            <p className="text-sm text-gray-500 mb-1">Phone</p>
+            {form.phone ? (
+            <p className="font-medium text-gray-900">
+              {form.phone}
+            </p>
+            ) : (
+              <div className="h-5 w-36 bg-gray-200 rounded animate-pulse" />
+            )}
+          </div>
+
+          <div>
+            <p className="text-sm text-gray-500 mb-2">
+              Interests
+            </p>
+
+            {form.tags?.length > 0 ? (
+              <div className="flex flex-wrap gap-2">
+                {form.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-3 py-1 bg-gray-100 rounded-full text-sm"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            ) : (
+              <div className="flex gap-2">
+                <div className="h-7 w-20 bg-gray-200 rounded-full animate-pulse" />
+                <div className="h-7 w-24 bg-gray-200 rounded-full animate-pulse" />
+              </div>
+            )}
+          </div>
+
+          <div>
+            <p className="text-sm text-gray-500 mb-1">
+              Age
+            </p>
+
+            {form.range ? (
+              <p className="font-medium">
+                {form.range[1]} years
+              </p>
+            ) : (
+              <div className="h-5 w-24 bg-gray-200 rounded animate-pulse" />
+            )}
+          </div>
+
+          <div>
+            <p className="text-sm text-gray-500 mb-1">
+              Notifications
+            </p>
+
+            {typeof form.notifications === "boolean" ? (
+              <p className="font-medium">
+                {form.notifications ? "Enabled" : "Disabled"}
+              </p>
+            ) : (
+              <div className="h-5 w-24 bg-gray-200 rounded animate-pulse" />
+            )}
+          </div>
+
+          {current === 2 && (
+              <Button onClick={handleSubmit} loading={isLoading}>
+                Submit
+              </Button>
+            )}
+
+        </div>
+      </div>
+    </div>
+    </div>
     </div>
   );
 }

@@ -31,6 +31,8 @@ const StyledButton = styled.button`
                 return "background: transparent; border: 1px solid #ccc;";
             case "danger":
                 return "background: #ff4d4f; color: white;";
+            case "warning":
+                return "background: #ff9966; color: white;";
             default:
                 return "background: #3a388b; color: white;";
         }
